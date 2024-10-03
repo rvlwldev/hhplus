@@ -12,9 +12,9 @@ class Lecture(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
 
-    val professorId: String,
+    val professorId: String = "",
 
-    val name: String,
+    val name: String = "",
 
     val type: LectureType,
 

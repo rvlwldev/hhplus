@@ -10,5 +10,5 @@ class Professor(
     val id: String? = null,
 
     @Column(nullable = false)
-    val name: String
+    val name: String = ""
 )

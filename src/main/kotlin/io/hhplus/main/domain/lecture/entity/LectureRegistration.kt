@@ -13,8 +13,8 @@ class LectureRegistration(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
-    val lectureId: Long,
-    val studentId: String,
+    val lectureId: Long = 0,
+    val studentId: String = "",
     val createMillis: Long = System.currentTimeMillis()
 ) {
     constructor(lecture: Lecture, student: Student) : this(
