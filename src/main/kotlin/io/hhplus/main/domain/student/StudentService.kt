@@ -1,26 +1,26 @@
 package io.hhplus.main.domain.student
 
 import io.hhplus.main.common.exception.BizException
-import io.hhplus.main.domain.lecture.LectureType
+import io.hhplus.main.domain.lecture.LectureRepository
 import org.springframework.stereotype.Service
 
 @Service
-class StudentService(private val repository: StudentRepository) {
+class StudentService(
+    private val studentRepository: StudentRepository,
+    private val lectureRepository: LectureRepository
+) {
 
-    fun get(studentId: String) = repository.findById(studentId)
+    fun get(studentId: String) = studentRepository.findById(studentId)
         ?: throw BizException("존재하지 않는 학생입니다.")
 
-    fun save(id: String, name: String): Student {
-        val student = repository.findById(id)
+    fun save(studentId: String, name: String): Student {
+        val student = studentRepository.findById(studentId)
         if (student != null) throw BizException("이미 존재하는 ID 입니다.")
 
-        return repository.save(Student(id, name))
+        return studentRepository.save(Student(studentId, name))
     }
 
-    // TODO : 강의 구현 후 구현
-    fun getLectures(studentId: String) {}
-
-    // TODO : 강의 구현 후 구현
-    fun getLectures(studentId: String, lectureType: LectureType) {}
+    fun getAllLectures(studentId: String) =
+        lectureRepository.findAllByStudentId(studentId)
 
 }

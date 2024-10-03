@@ -2,24 +2,37 @@ package io.hhplus.main.domain.lecture
 
 import io.hhplus.main.common.exception.BizException
 import io.hhplus.main.domain.lecture.entity.Lecture
-import io.hhplus.main.domain.professor.Professor
+import io.hhplus.main.domain.lecture.entity.LectureRegistration
+import io.hhplus.main.domain.professor.ProfessorRepository
+import io.hhplus.main.domain.student.StudentRepository
 import org.springframework.stereotype.Service
-import org.springframework.transaction.annotation.Transactional
 
 @Service
-class LectureService(private val repository: LectureRepository) {
+class LectureService(
+    private val studentRepository: StudentRepository,
+    private val professorRepository: ProfessorRepository,
+    private val lectureRepository: LectureRepository
+) {
 
-    fun get(id: String) = repository.findById(id)
+    fun get(id: Long) = lectureRepository.findById(id)
         ?: throw BizException("존재하지 않는 강의입니다.")
 
-    @Transactional
-    fun save(professor: Professor, id: String, name: String, type: LectureType): Lecture {
-        val lecture = repository.findById(id)
+    fun getAll() = lectureRepository.findAll()
 
-        if (lecture != null) throw BizException("이미 존재하는 ID 입니다.")
-        if (professor.id == null) throw BizException("존재하지 않는 교수입니다.")
+    fun save(professorId: String, name: String, type: LectureType): Lecture {
+        professorRepository.findById(professorId)
+            ?: throw BizException("존재하지 않는 교수 입니다.")
 
-        return repository.save(Lecture(id, professor.id, name, type))
+        return lectureRepository.save(Lecture(professorId, name, type))
+    }
+
+    fun register(lectureId: Long, studentId: String): LectureRegistration {
+        val lecture = this.get(lectureId)
+        val student = studentRepository.findById(studentId)
+            ?: throw BizException("존재하지 않는 학생입니다.")
+        val registration = LectureRegistration(lecture, student)
+
+        return lectureRepository.saveRegistration(registration)
     }
 
 }
