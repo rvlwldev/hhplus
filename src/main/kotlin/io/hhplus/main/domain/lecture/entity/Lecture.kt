@@ -12,16 +12,25 @@ class Lecture(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
 
-    val professorId: String = "",
+    val professorId: String,
 
-    val name: String = "",
+    val name: String,
 
     val type: LectureType,
 
-    var maximumStudentCount: Int = 30,
+    var maximumStudentCount: Int,
 
-    var registeredStudentCount: Int = 0
+    var registeredStudentCount: Int
 ) {
+    constructor() : this(
+        id = 0,
+        professorId = "",
+        name = "",
+        type = LectureType.NORMAL,
+        maximumStudentCount = 30,
+        registeredStudentCount = 0
+    )
+
     constructor(professorId: String, name: String, type: LectureType) : this(
         professorId = professorId,
         name = name,
