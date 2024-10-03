@@ -1,4 +1,4 @@
-package io.hhplus.main.infrastructure.jpa
+package io.hhplus.main.infrastructure.repository.professor
 
 import io.hhplus.main.domain.professor.Professor
 import org.springframework.data.jpa.repository.JpaRepository

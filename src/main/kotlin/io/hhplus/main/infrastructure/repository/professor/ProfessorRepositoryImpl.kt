@@ -2,7 +2,6 @@ package io.hhplus.main.infrastructure.repository.professor
 
 import io.hhplus.main.domain.professor.Professor
 import io.hhplus.main.domain.professor.ProfessorRepository
-import io.hhplus.main.infrastructure.jpa.ProfessorJpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository

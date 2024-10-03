@@ -2,7 +2,6 @@ package io.hhplus.main.infrastructure.repository.student
 
 import io.hhplus.main.domain.student.Student
 import io.hhplus.main.domain.student.StudentRepository
-import io.hhplus.main.infrastructure.jpa.StudentJpaRepository
 import org.springframework.stereotype.Repository
 
 
