@@ -7,6 +7,7 @@ import io.hhplus.main.domain.student.Student
 interface LectureRepository {
 
     fun findById(id: Long): Lecture?
+    fun findByIdWithLock(id: Long): Lecture?
     fun findAll(): List<Lecture>
 
     fun findAllByProfessorId(professorId: String): List<Lecture>

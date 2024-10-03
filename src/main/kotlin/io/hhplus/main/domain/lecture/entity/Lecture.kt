@@ -1,5 +1,6 @@
 package io.hhplus.main.domain.lecture.entity
 
+import io.hhplus.main.common.exception.BizException
 import io.hhplus.main.domain.lecture.LectureType
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
@@ -38,4 +39,10 @@ class Lecture(
         maximumStudentCount = 30,
         registeredStudentCount = 0
     )
+
+    fun incrementRegisteredStudentCount() {
+        if (registeredStudentCount < maximumStudentCount)
+            registeredStudentCount++
+        else throw BizException("등록할 수 있는 최대 학생 수를 초과했습니다.")
+    }
 }

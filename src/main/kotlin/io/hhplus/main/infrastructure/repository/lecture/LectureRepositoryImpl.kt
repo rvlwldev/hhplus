@@ -5,10 +5,16 @@ import io.hhplus.main.domain.lecture.LectureType
 import io.hhplus.main.domain.lecture.entity.Lecture
 import io.hhplus.main.domain.lecture.entity.LectureRegistration
 import io.hhplus.main.domain.student.Student
+import jakarta.persistence.LockModeType
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.jpa.repository.Lock
+import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository
 
 interface LectureJpaRepository : JpaRepository<Lecture, Long> {
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("select lecture from Lecture lecture where lecture.id = :id")
+    fun findByIdWithLock(id: Long): Lecture?
     fun findAllByProfessorId(professorId: String): List<Lecture>
     fun findAllByProfessorIdAndType(professorId: String, type: LectureType): List<Lecture>
 }
@@ -24,8 +30,12 @@ class LectureRepositoryImpl(
     private val registrationJpa: LectureRegistrationJpaRepository
 ) : LectureRepository {
 
-    override fun findById(id: Long): Lecture? = lectureJpa.findById(id).orElse(null)
-    
+    override fun findById(id: Long): Lecture? =
+        lectureJpa.findById(id).orElse(null)
+
+    override fun findByIdWithLock(id: Long): Lecture? =
+        lectureJpa.findByIdWithLock(id)
+
     override fun findAll(): List<Lecture> =
         lectureJpa.findAll()
 

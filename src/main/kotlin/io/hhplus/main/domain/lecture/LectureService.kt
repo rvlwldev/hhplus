@@ -6,6 +6,7 @@ import io.hhplus.main.domain.lecture.entity.LectureRegistration
 import io.hhplus.main.domain.professor.ProfessorRepository
 import io.hhplus.main.domain.student.StudentRepository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class LectureService(
@@ -26,12 +27,19 @@ class LectureService(
         return lectureRepository.save(Lecture(professorId, name, type))
     }
 
+    @Transactional
     fun register(lectureId: Long, studentId: String): LectureRegistration {
-        val lecture = this.get(lectureId)
+        val lecture = lectureRepository.findByIdWithLock(lectureId)
+            ?: throw BizException("존재하지 않는 강의입니다.")
         val student = studentRepository.findById(studentId)
             ?: throw BizException("존재하지 않는 학생입니다.")
-        val registration = LectureRegistration(lecture, student)
 
+        val history = lectureRepository.findRegistration(lecture, student)
+        if (history != null) throw BizException("이미 신청된 강의입니다.")
+
+        lecture.incrementRegisteredStudentCount()
+
+        val registration = LectureRegistration(lectureRepository.save(lecture), student)
         return lectureRepository.saveRegistration(registration)
     }
 
