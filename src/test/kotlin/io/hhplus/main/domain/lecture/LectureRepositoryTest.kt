@@ -1,6 +1,5 @@
-package io.hhplus.main.unit
+package io.hhplus.main.domain.lecture
 
-import io.hhplus.main.domain.lecture.LectureType
 import io.hhplus.main.domain.lecture.entity.Lecture
 import io.hhplus.main.domain.lecture.entity.LectureRegistration
 import io.hhplus.main.domain.professor.Professor

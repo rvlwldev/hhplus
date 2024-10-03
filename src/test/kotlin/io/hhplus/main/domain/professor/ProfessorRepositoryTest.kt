@@ -1,9 +1,7 @@
-package io.hhplus.main.unit
+package io.hhplus.main.domain.professor
 
-import io.hhplus.main.domain.professor.Professor
 import io.hhplus.main.infrastructure.repository.professor.ProfessorJpaRepository
 import io.hhplus.main.infrastructure.repository.professor.ProfessorRepositoryImpl
-import io.hhplus.main.infrastructure.repository.student.StudentRepositoryImpl
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

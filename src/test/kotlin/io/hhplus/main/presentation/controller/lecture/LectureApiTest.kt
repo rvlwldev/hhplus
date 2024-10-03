@@ -1,4 +1,4 @@
-package io.hhplus.main.integration
+package io.hhplus.main.presentation.controller.lecture
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.hhplus.main.domain.lecture.LectureService
@@ -8,7 +8,6 @@ import io.hhplus.main.domain.lecture.entity.LectureRegistration
 import io.hhplus.main.domain.professor.Professor
 import io.hhplus.main.domain.professor.ProfessorService
 import io.hhplus.main.domain.student.Student
-import io.hhplus.main.presentation.controller.lecture.LectureController
 import io.hhplus.main.presentation.controller.lecture.request.LectureRequest
 import io.hhplus.main.presentation.controller.lecture.request.RegistrationRequest
 import io.hhplus.main.presentation.controller.lecture.response.RegistrationResponse

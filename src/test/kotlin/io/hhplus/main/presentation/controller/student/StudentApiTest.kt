@@ -1,4 +1,4 @@
-package io.hhplus.main.integration
+package io.hhplus.main.presentation.controller.student
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.hhplus.main.domain.lecture.LectureType
@@ -7,7 +7,6 @@ import io.hhplus.main.domain.professor.Professor
 import io.hhplus.main.domain.professor.ProfessorService
 import io.hhplus.main.domain.student.Student
 import io.hhplus.main.domain.student.StudentService
-import io.hhplus.main.presentation.controller.student.StudentController
 import io.hhplus.main.presentation.controller.student.request.StudentRequest
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.`when`

@@ -1,6 +1,5 @@
-package io.hhplus.main.unit
+package io.hhplus.main.domain.student
 
-import io.hhplus.main.domain.student.Student
 import io.hhplus.main.infrastructure.repository.student.StudentJpaRepository
 import io.hhplus.main.infrastructure.repository.student.StudentRepositoryImpl
 import org.junit.jupiter.api.Assertions.assertEquals
