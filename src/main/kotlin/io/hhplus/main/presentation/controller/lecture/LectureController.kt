@@ -27,7 +27,7 @@ class LectureController(
 
 
     @GetMapping("/{id}")
-    fun get(@PathVariable lectureId: Long): LectureResponse {
+    fun get(@PathVariable("id") lectureId: Long): LectureResponse {
         val lecture = lectureService.get(lectureId)
         val professor = professorService.get(lecture.professorId)
 

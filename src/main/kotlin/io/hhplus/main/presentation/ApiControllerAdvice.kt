@@ -14,7 +14,8 @@ class ApiControllerAdvice : ResponseEntityExceptionHandler() {
 
     @ExceptionHandler(Exception::class)
     fun handleException(e: Exception): ResponseEntity<ErrorResponse> {
-        return ResponseEntity(ErrorResponse(), HttpStatus.INTERNAL_SERVER_ERROR)
+        val errorResponse = ErrorResponse("Internal Server Error", e.message ?: "에러가 발생했습니다.")
+        return ResponseEntity(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR)
     }
 
     @ExceptionHandler(BizException::class)

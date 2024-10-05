@@ -5,6 +5,7 @@ import io.hhplus.main.domain.professor.Professor
 import io.hhplus.main.presentation.controller.professor.response.ProfessorResponse
 
 data class LectureResponse(
+    val id: Long,
     val name: String,
     val type: String,
     val professor: ProfessorResponse,
@@ -15,6 +16,7 @@ data class LectureResponse(
         lecture: Lecture,
         professor: Professor
     ) : this(
+        id = lecture.id,
         name = lecture.name,
         type = lecture.type.toString(),
         professor = ProfessorResponse(professor),
